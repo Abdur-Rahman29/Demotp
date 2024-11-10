@@ -1,5 +1,5 @@
 # Use an official Python runtime as the base image
-FROM docker.io/python:3.9-slim as build
+FROM python
 
 # Set environment variables to avoid Python buffering
 ENV PYTHONUNBUFFERED 1
