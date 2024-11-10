@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .  # Build from the root directory (where Dockerfile is located)
+      dockerfile: ReviewBot/Dockerfile  # Path to the backend Dockerfile
+    volumes:
+      - ./ReviewBot:/app  # Mount the backend directory as a volume for development
+    ports:
+      - "8000:8000"  # Expose port 8000 for Django
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: .  # Build from the root directory
+      dockerfile: reactbot/Dockerfile  # Path to the frontend Dockerfile
+    ports:
+      - "80:80"  # Expose port 80 for React
+    networks:
+      - app-network
+    depends_on:
+      - backend  # Ensure backend starts first (if needed)
+
+networks:
+  app-network:
+    driver: bridge
