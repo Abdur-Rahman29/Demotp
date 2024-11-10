@@ -1,17 +1,17 @@
 # Step 1: Build the React app using Node.js
 FROM node:16 as build
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
 # Copy the package.json and package-lock.json (or yarn.lock)
-COPY reactbot/package*.json ./
+COPY package*.json ./  # Adjusted this line to reference files in the context
 
 # Install dependencies
 RUN npm install
 
 # Copy the entire React app into the container
-COPY reactbot/ .
+COPY . .  # Adjusted this line to copy all files from the current context (Reactbot/)
 
 # Build the React app for production
 RUN npm run build
