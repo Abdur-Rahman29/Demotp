@@ -2,3 +2,4 @@ groq
 python-docx
 pdfplumber
 python-pptx
+Django>=3.2,<4
