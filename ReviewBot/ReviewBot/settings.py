@@ -68,15 +68,20 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Allow requests from your React frontend
+# CORS Settings to allow all origins
+  # Allows all origins for cross-origin requests
+
+# CSRF Settings to trust all origins
+CSRF_COOKIE_HTTPONLY = False  # Allow access to CSRF cookie from JavaScript
+CSRF_TRUSTED_ORIGINS = [
+    "*",  # Trust all origins (Be cautious with this!)
 ]
 
-CSRF_COOKIE_HTTPONLY = False  # Allow access to CSRF cookie from JavaScript (if required)
-# CSRF settings for cross-origin requests
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",  # Trust React frontend for CSRF
+# CORS Settings (Alternatively, using CORS_ALLOWED_ORIGINS)
+CORS_ALLOWED_ORIGINS = [
+    "*",  # Allow requests from any origin (dangerous for production)
 ]
+
 ROOT_URLCONF = 'ReviewBot.urls'
 
 TEMPLATES = [
@@ -100,17 +105,6 @@ WSGI_APPLICATION = 'ReviewBot.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
-        'USER': 'myuser',
-        'PASSWORD': 'mypassword',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
 
 
 # Password validation
