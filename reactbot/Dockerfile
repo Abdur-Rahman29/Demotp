@@ -1,5 +1,5 @@
 # Step 1: Build the React app using Node.js
-FROM nodejs as build
+FROM node as build
 
 # Set the working directory inside the container
 WORKDIR /app
