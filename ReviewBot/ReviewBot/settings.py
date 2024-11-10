@@ -66,21 +66,20 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+# settings.py
+
+# Allow all origins for CORS
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
-# CORS Settings to allow all origins
-  # Allows all origins for cross-origin requests
 
-# CSRF Settings to trust all origins
-CSRF_COOKIE_HTTPONLY = False  # Allow access to CSRF cookie from JavaScript
+# CSRF settings to trust all origins (for development)
+CSRF_COOKIE_HTTPONLY = False  # Allow JavaScript to access the CSRF token if needed
 CSRF_TRUSTED_ORIGINS = [
-    "*",  # Trust all origins (Be cautious with this!)
+    "http://localhost",   # Allow localhost (for local testing)
+    "http://127.0.0.1",  # Allow 127.0.0.1 (for local testing)
+    "https://localhost",  # Allow localhost with HTTPS (if used)
+    "https://*.*",        # Allow any HTTPS origin (dangerous for production)
 ]
 
-# CORS Settings (Alternatively, using CORS_ALLOWED_ORIGINS)
-CORS_ALLOWED_ORIGINS = [
-    "*",  # Allow requests from any origin (dangerous for production)
-]
 
 ROOT_URLCONF = 'ReviewBot.urls'
 
